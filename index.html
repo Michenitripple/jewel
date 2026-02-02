@@ -16,6 +16,10 @@
       text-align: center;
     }
 
+    .hidden {
+      display: none;
+    }
+
     .teddy {
       font-size: 120px;
       margin-bottom: 20px;
@@ -51,7 +55,6 @@
     }
 
     video {
-      display: none;
       width: 90%;
       max-width: 600px;
       border-radius: 15px;
@@ -60,37 +63,43 @@
 </head>
 <body>
 
-  <div id="content">
+  <!-- Intro video that plays immediately -->
+  <video id="introVideo" autoplay>
+    <source src="video.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- Valentine content hidden initially -->
+  <div id="valContent" class="hidden">
     <div class="teddy">🧸</div>
     <h1>Will you be my Valentine?</h1>
-
     <div class="buttons">
       <button id="yes">Yes 💖</button>
       <button id="no">No</button>
     </div>
   </div>
 
-  <video id="valVideo" controls>
-    <source src="video.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-
   <script>
-    let yesSize = 20;
+    // When intro video ends, show the question
+    const intro = document.getElementById('introVideo');
+    const valContent = document.getElementById('valContent');
 
-    document.getElementById("yes").addEventListener("click", () => {
-      // Remove question
-      document.getElementById("content").style.display = "none";
-
-      // Show & play video
-      const video = document.getElementById("valVideo");
-      video.style.display = "block";
-      video.play();
+    intro.addEventListener('ended', () => {
+      valContent.classList.remove('hidden');
     });
 
-    document.getElementById("no").addEventListener("click", () => {
-      const noBtn = document.getElementById("no");
-      noBtn.innerText = "Dickhead";
+    // NO button
+    document.getElementById('no').addEventListener('click', () => {
+      document.getElementById('no').innerText = "Dickhead";
+    });
+
+    // YES button (can add animation or effects later)
+    let yesSize = 20;
+    document.getElementById('yes').addEventListener('click', () => {
+      yesSize += 10;
+      const yesBtn = document.getElementById('yes');
+      yesBtn.style.fontSize = yesSize + "px";
+      yesBtn.style.padding = yesSize + "px";
     });
   </script>
 
