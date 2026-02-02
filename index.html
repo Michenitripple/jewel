@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Valentine 💘</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: pink;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    .teddy {
+      font-size: 120px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 20px;
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    #yes {
+      background-color: red;
+      color: white;
+      font-size: 20px;
+    }
+
+    #no {
+      background-color: white;
+      color: black;
+    }
+
+    video {
+      display: none;
+      width: 90%;
+      max-width: 600px;
+      border-radius: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="content">
+    <div class="teddy">🧸</div>
+    <h1>Will you be my Valentine?</h1>
+
+    <div class="buttons">
+      <button id="yes">Yes 💖</button>
+      <button id="no">No</button>
+    </div>
+  </div>
+
+  <video id="valVideo" controls>
+    <source src="video.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <script>
+    let yesSize = 20;
+
+    document.getElementById("yes").addEventListener("click", () => {
+      // Remove question
+      document.getElementById("content").style.display = "none";
+
+      // Show & play video
+      const video = document.getElementById("valVideo");
+      video.style.display = "block";
+      video.play();
+    });
+
+    document.getElementById("no").addEventListener("click", () => {
+      const noBtn = document.getElementById("no");
+      noBtn.innerText = "Dickhead";
+    });
+  </script>
+
+</body>
+</html>
